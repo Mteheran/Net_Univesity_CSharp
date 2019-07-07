@@ -15,11 +15,11 @@ namespace ConsoleDemo
             {
                 Console.WriteLine("1=Mostrar año actual, 2=Valor del número pi, 3=Contador");
                 var numeroSeleccionado = Console.ReadLine();
-                int intNumero = 0;
+                Menu menu = Menu.Ninguna;
 
                 try 
                 {
-                  intNumero = int.Parse(numeroSeleccionado);
+                  menu = Enum.Parse<Menu>(numeroSeleccionado);
                 }
                 catch (FormatException)
                 {
@@ -30,15 +30,15 @@ namespace ConsoleDemo
                     Console.WriteLine("Excepción:" + ex.Message);        
                 }
                
-                if (intNumero == 1)
+                if (menu == Menu.Año)
                 {
                     Console.WriteLine(año);
                 }
-                else if(intNumero == 2)   
+                else if(menu == Menu.PI)   
                 {
                     Console.WriteLine("Número pi:" + numeroPi);
                 }
-                else if(intNumero == 3)
+                else if(menu == Menu.Contador)
                 {
                     Console.WriteLine("Ingrese el limite del contador");
                     var limiteContador = Console.ReadLine();
@@ -57,5 +57,13 @@ namespace ConsoleDemo
                 }           
             }
         }
+    }
+
+    public enum Menu
+    {
+        Ninguna = 0,
+        Año=1,
+        PI=2,
+        Contador=3
     }
 }
