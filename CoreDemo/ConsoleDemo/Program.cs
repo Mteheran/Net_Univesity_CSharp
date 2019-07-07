@@ -12,13 +12,20 @@ namespace ConsoleDemo
             const string saludo = "Bienvenido a mi aplicación";
             DateTime? añoActual = DateTime.Now;           
             var año = añoActual?.Year;
-            double numeroPi = 3.14;
+            double numeroPi = 3.14_159_265_359;
             int[] vectorEnteros = {1,2,3,4,5}; //new int[5];
-            vectorEnteros[0] = new Random().Next(100);
-            vectorEnteros[1] = new Random().Next(100);
-            vectorEnteros[2] = new Random().Next(100);
-            vectorEnteros[3] = new Random().Next(100);
-            vectorEnteros[4] = new Random().Next(100);
+            (bool result, int valor) tupla = (false, 0);
+            
+            void AsignarValoresAleatorios()
+            {
+                vectorEnteros[0] = new Random().Next(100);
+                vectorEnteros[1] = new Random().Next(100);
+                vectorEnteros[2] = new Random().Next(100);
+                vectorEnteros[3] = new Random().Next(100);
+                vectorEnteros[4] = new Random().Next(100);
+            }
+
+            AsignarValoresAleatorios();           
 
             WriteLine(saludo);
 
@@ -58,9 +65,8 @@ namespace ConsoleDemo
                 else if(menu == Menu.Contador)
                 {
                     WriteLine("Ingrese el limite del contador");
-                    var limiteContador = ReadLine();
-                    int intLimiteContador = 0;
-                    int.TryParse(limiteContador, out intLimiteContador);
+                    var limiteContador = ReadLine();                    
+                    int.TryParse(limiteContador, out int intLimiteContador);
 
                     for (int i=1; i<=intLimiteContador; i++)
                     {
