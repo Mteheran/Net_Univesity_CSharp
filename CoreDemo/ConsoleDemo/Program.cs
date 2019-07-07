@@ -6,38 +6,55 @@ namespace ConsoleDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bienvenido a mi aplicacion");
-            Console.WriteLine("1=Saludo, 2=Valor Pi, 3=Año actual");
-            string ValorIngresado = Console.ReadLine();
+            const string saludo = "Bienvenido a mi aplicación";            
+            var año = DateTime.Now.Year;
+            double numeroPi = 3.14;
+            Console.WriteLine(saludo);
 
-            //se compara 1 para saludo
-            switch(ValorIngresado)
-        	{
-                case "1":
-                 const string saludo = "Hola mundo";  
-                 Console.WriteLine(saludo);
-                break;
-                case "2":
-                case "3":
-                return;
-                break;
-            }
+            while(1>0)
+            {
+                Console.WriteLine("1=Mostrar año actual, 2=Valor del número pi, 3=Contador");
+                var numeroSeleccionado = Console.ReadLine();
+                int intNumero = 0;
 
+                try 
+                {
+                  intNumero = int.Parse(numeroSeleccionado);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("El dato ingresado no es válido");
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Excepción:" + ex.Message);        
+                }
+               
+                if (intNumero == 1)
+                {
+                    Console.WriteLine(año);
+                }
+                else if(intNumero == 2)   
+                {
+                    Console.WriteLine("Número pi:" + numeroPi);
+                }
+                else if(intNumero == 3)
+                {
+                    Console.WriteLine("Ingrese el limite del contador");
+                    var limiteContador = Console.ReadLine();
+                    int intLimiteContador = 0;
+                    int.TryParse(limiteContador, out intLimiteContador);
 
-            if (ValorIngresado == "1")
-            {
-                const string saludo = "Hola mundo";  
-                Console.WriteLine(saludo);
-            }
-            else if (ValorIngresado == "2")
-            {
-                 double numeroPi = double.Parse("3,14");  
-                 Console.WriteLine("Numero pi:" + numeroPi.ToString()); 
-            }
-            else if (ValorIngresado == "3")
-            {
-                var año = DateTime.Now.Year;
-                Console.WriteLine(año);
+                    for (int i=1; i<=intLimiteContador; i++)
+                    {
+                        Console.WriteLine(i);
+                        i++;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No ha seleccionado un valor válido");
+                }           
             }
         }
     }
