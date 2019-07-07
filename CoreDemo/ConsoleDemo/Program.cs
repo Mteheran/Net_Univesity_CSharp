@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleDemo.Enumerations;
+using static System.Console;
 
 namespace ConsoleDemo
 {
@@ -8,8 +9,9 @@ namespace ConsoleDemo
     {
         static void Main(string[] args)
         {
-            const string saludo = "Bienvenido a mi aplicación";            
-            var año = DateTime.Now.Year;
+            const string saludo = "Bienvenido a mi aplicación";
+            DateTime? añoActual = DateTime.Now;           
+            var año = añoActual?.Year;
             double numeroPi = 3.14;
             int[] vectorEnteros = {1,2,3,4,5}; //new int[5];
             vectorEnteros[0] = new Random().Next(100);
@@ -18,12 +20,12 @@ namespace ConsoleDemo
             vectorEnteros[3] = new Random().Next(100);
             vectorEnteros[4] = new Random().Next(100);
 
-            Console.WriteLine(saludo);
+            WriteLine(saludo);
 
             while(1>0)
             {
-                Console.WriteLine("1=Mostrar año actual, 2=Valor del número pi, 3=Contador, 4=Vector, 5=Diccionario");
-                var numeroSeleccionado = Console.ReadLine();
+                WriteLine("1=Mostrar año actual, 2=Valor del número pi, 3=Contador, 4=Vector, 5=Diccionario");
+                var numeroSeleccionado = ReadLine();
                 Menu menu = Menu.Ninguna;
 
                 try 
@@ -32,31 +34,37 @@ namespace ConsoleDemo
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("El dato ingresado no es válido");
+                    WriteLine("El dato ingresado no es válido");
+                }
+                catch(Exception ex) when (ex.Message.ToLower().Contains("format"))
+                {
+                    WriteLine("El formato no es válido");
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine("Excepción:" + ex.Message);        
+                    //Console.WriteLine("Excepción:" + ex.Message);
+                    //Console.WriteLine(string.Format("Excepción:{0}", ex.Message));
+                    WriteLine($"Excepción:{ex.Message}");        
                 }
                
                 if (menu == Menu.Año)
                 {
-                    Console.WriteLine(año);
+                    WriteLine(año);
                 }
                 else if(menu == Menu.PI)   
                 {
-                    Console.WriteLine("Número pi:" + numeroPi);
+                    WriteLine($"Número pi: {numeroPi}");
                 }
                 else if(menu == Menu.Contador)
                 {
-                    Console.WriteLine("Ingrese el limite del contador");
-                    var limiteContador = Console.ReadLine();
+                    WriteLine("Ingrese el limite del contador");
+                    var limiteContador = ReadLine();
                     int intLimiteContador = 0;
                     int.TryParse(limiteContador, out intLimiteContador);
 
                     for (int i=1; i<=intLimiteContador; i++)
                     {
-                        Console.WriteLine(i);
+                        WriteLine(i);
                         i++;
                     }
                 }
@@ -91,7 +99,7 @@ namespace ConsoleDemo
 
                     foreach(var item in diccionario)
                     {
-                        Console.WriteLine("Clave:" + item.Key + " - Valor:" + item.Value);
+                        Console.WriteLine($"Clave:{item.Key} - Valor:{item.Value}");
                     }
                 }
                 else
