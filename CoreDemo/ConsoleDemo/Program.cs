@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleDemo.Enumerations;
 
 namespace ConsoleDemo
 {
@@ -101,13 +102,4 @@ namespace ConsoleDemo
         }
     }
 
-    public enum Menu
-    {
-        Ninguna,
-        Año=1,
-        PI=2,
-        Contador=3,
-        Vector = 4,
-        Diccionario= 5
-    }
 }
