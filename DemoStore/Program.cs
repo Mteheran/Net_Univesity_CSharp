@@ -7,22 +7,30 @@ namespace DemoStore
     class Program
     {
         static void Main(string[] args)
-        {
-            Producto objetoProducto = new Producto();
-            objetoProducto.Nombre = "Arroz";
-            objetoProducto.Descripcion = "Arroz";
-            objetoProducto.UnidadMedicion = Medida.Kilo;
-            objetoProducto.AsignarPrecio(1000);
+        {           
+            void ImprimirProductos(Producto[] productos)
+            {
+                for(var i=0;i<productos.Length;i++)
+                {
+                    Console.WriteLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()}");
+                }
+            }
 
-            var objetoProducto2 = new Producto();
-            objetoProducto2.Nombre = "Aceite";
-            objetoProducto2.Descripcion = "Aceite de oliva";
-            objetoProducto2.UnidadMedicion = Medida.Unidad;
-            objetoProducto2.AsignarPrecio(8500);
+            void ImprimirProductosImportados(ProductoImportado[] productos)
+            {
+                for(var i=0;i<productos.Length;i++)
+                {
+                    Console.WriteLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()} - Pais de importación {productos[i].PaisDeImportacion}");
+                }
+            }
 
-            Console.WriteLine(objetoProducto.VerPrecio());
-            objetoProducto.AsignarPrecio(1200);
-            Console.WriteLine(objetoProducto.VerPrecio());
+            Tienda miTienda = new Tienda();
+
+            Console.WriteLine($"Bienvenido a {miTienda.Nombre}");
+            Console.WriteLine("Nuestros productos disponibles");
+            ImprimirProductos(miTienda.ListaDeProductos);
+            Console.WriteLine("Nuestros productos Importados disponibles");
+            ImprimirProductosImportados(miTienda.ListaDeProductosImportados);
         }
     }
 }
