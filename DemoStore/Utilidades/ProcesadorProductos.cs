@@ -5,24 +5,22 @@ namespace DemoStore.Utilidades
 {
     public static class ProcesadorProductos
     {
-        public static string ProcesarProductos(Producto[] productos)
+        public static string ProcesarProductos(ProductoBase[] productos)
         {
             StringBuilder sb = new StringBuilder(); 
             
             for(var i=0;i<productos.Length;i++)
             {
-                sb.AppendLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()}");
-            }
+                if(productos[i] is ProductoImportado)
+                {
+                    sb.AppendLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()} - Pais de importación { ((ProductoImportado)productos[i]).PaisDeImportacion}");
+                }
+                else
+                { 
+                    sb.AppendLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()}");
 
-            return sb.ToString();
-        }
-
-        public static string ProcesarProductosImportados(ProductoImportado[] productos)
-        {
-            StringBuilder sb = new StringBuilder();
-            for(var i=0;i<productos.Length;i++)
-            {
-                sb.AppendLine($"Producto:{productos[i].Nombre} - Precio {productos[i].VerPrecio()} - Pais de importación {productos[i].PaisDeImportacion}");
+                }
+               
             }
 
             return sb.ToString();

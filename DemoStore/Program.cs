@@ -15,7 +15,7 @@ namespace DemoStore
             Console.WriteLine("Nuestros productos disponibles");
             Console.WriteLine(ProcesadorProductos.ProcesarProductos(miTienda.ListaDeProductos));
             Console.WriteLine("Nuestros productos Importados disponibles");
-            Console.WriteLine(ProcesadorProductos.ProcesarProductosImportados(miTienda.ListaDeProductosImportados));
+            Console.WriteLine(ProcesadorProductos.ProcesarProductos(miTienda.ListaDeProductosImportados));
         }
     }
 }
