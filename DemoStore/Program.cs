@@ -2,6 +2,7 @@
 using DemoStore.Clases;
 using DemoStore.Enumeraciones;
 using DemoStore.Utilidades;
+using DemoStore.Interfaces;
 
 namespace DemoStore
 {
@@ -9,7 +10,7 @@ namespace DemoStore
     {
         static void Main(string[] args)
         {  
-            Tienda miTienda = new Tienda();
+            ITienda miTienda = Fabricas.FabricaTienda.ObtenerTienda(TipoTienda.TiendaCentro);
             
             Console.WriteLine($"Bienvenido a {miTienda.Nombre}");
             Console.WriteLine("Nuestros productos disponibles");

@@ -1,16 +1,17 @@
-using DemoStore.Enumeraciones;
 using DemoStore.Interfaces;
+using DemoStore.Enumeraciones;
 
 namespace DemoStore.Clases
 {
-    public class Tienda : ITienda
+    public class TiendaCentro : ITienda, ITiendaVirtual 
     {
-        public string Nombre {get; set;} = "La tienda de NetUniversity";
-        public string Direccion {get;set;} = "Calle 123 #50-60";
+        public string Nombre {get; set;} = "La tienda del centro";
+        public string Direccion {get;set;} = "Carrera falsa 123";
         public Producto[] ListaDeProductos {get; set;}
+        public Producto[] ProductosVirtuales {get; set;}
         public ProductoImportado[] ListaDeProductosImportados {get;set;}
 
-        public Tienda()
+        public TiendaCentro()
         {             
             ListaDeProductos = ObtenerProductos(); 
             ListaDeProductosImportados = ObtenerProductosImportados();     
