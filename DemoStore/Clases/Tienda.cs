@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DemoStore.Enumeraciones;
 using DemoStore.Interfaces;
 
@@ -12,13 +13,13 @@ namespace DemoStore.Clases
 
         public Tienda()
         {             
-            ListaDeProductos = ObtenerProductos(); 
-            ListaDeProductosImportados = ObtenerProductosImportados();     
+            ListaDeProductos = ObtenerProductos().ToArray(); 
+            ListaDeProductosImportados = ObtenerProductosImportados().ToArray();     
         }
 
-        private Producto[] ObtenerProductos()
+        private List<Producto> ObtenerProductos()
         {
-            Producto[] ListaProducto = new Producto[2];
+            List<Producto> ListaProducto = new List<Producto>();
 
             Producto objetoProducto = new Producto();
             objetoProducto.Nombre = "Arroz";
@@ -26,21 +27,22 @@ namespace DemoStore.Clases
             objetoProducto.UnidadMedicion = Medida.Kilo;
             objetoProducto.AsignarPrecio(1000.586);
 
+            ListaProducto.Add(objetoProducto);
+
             var objetoProducto2 = new Producto();
             objetoProducto2.Nombre = "Aceite";
             objetoProducto2.Descripcion = "Aceite de oliva";
             objetoProducto2.UnidadMedicion = Medida.Unidad;
             objetoProducto2.AsignarPrecio(8500, 800);
 
-            ListaProducto[0] = objetoProducto;
-            ListaProducto[1] = objetoProducto2;
+            ListaProducto.Add(objetoProducto2);
 
             return ListaProducto;
         }
 
-        private ProductoImportado[] ObtenerProductosImportados()
+        private List<ProductoImportado> ObtenerProductosImportados()
         {
-            ProductoImportado[] listaImportados = new ProductoImportado[2];
+            List<ProductoImportado> listaImportados = new List<ProductoImportado>();
 
             ProductoImportado productoImportado = new ProductoImportado();
             productoImportado.Nombre = "Uvas";
@@ -48,7 +50,7 @@ namespace DemoStore.Clases
             productoImportado.AsignarPrecio(1500);
             productoImportado.PaisDeImportacion = "Argentina";
 
-            listaImportados[0] = productoImportado;
+            listaImportados.Add(productoImportado);
 
             ProductoImportado productoImportado2 = new ProductoImportado();
             productoImportado2.Nombre = "Manzana";
@@ -56,7 +58,7 @@ namespace DemoStore.Clases
             productoImportado2.AsignarPrecio(3250);
             productoImportado2.PaisDeImportacion = "Uruguay";
 
-            listaImportados[1] = productoImportado2;
+            listaImportados.Add(productoImportado2);
 
             return listaImportados;
 

@@ -3,6 +3,7 @@ using DemoStore.Clases;
 using DemoStore.Enumeraciones;
 using DemoStore.Utilidades;
 using DemoStore.Interfaces;
+using System.Net;
 
 namespace DemoStore
 {
@@ -12,11 +13,12 @@ namespace DemoStore
         {  
             ITienda miTienda = Fabricas.FabricaTienda.ObtenerTienda(TipoTienda.TiendaCentro);
             
+            Console.WriteLine($"{Dns.GetHostName()} - {DateTime.Now}");
             Console.WriteLine($"Bienvenido a {miTienda.Nombre}");
             Console.WriteLine("Nuestros productos disponibles");
-            Console.WriteLine(ProcesadorProductos.ProcesarProductos(miTienda.ListaDeProductos));
+            Console.WriteLine(ProcesadorProductos.ProcesarProductos<ProductoBase[]>(miTienda.ListaDeProductos));
             Console.WriteLine("Nuestros productos Importados disponibles");
-            Console.WriteLine(ProcesadorProductos.ProcesarProductos(miTienda.ListaDeProductosImportados));
+            Console.WriteLine(ProcesadorProductos.ProcesarProductos<ProductoImportado[]>(miTienda.ListaDeProductosImportados));
         }
     }
 }
