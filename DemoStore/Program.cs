@@ -17,7 +17,7 @@ namespace DemoStore
             Console.WriteLine($"Hola {Dns.GetHostName()} - {DateTime.Now}");
             Console.WriteLine($"Bienvenido a {miTienda.Nombre}");
             Console.WriteLine("Nuestros productos disponibles");
-            
+            TiendaLog.GuardarEnLog("Se abre la aplicación");
             while(true)
             {
                 Console.WriteLine(ProcesadorProductos.ProcesarProductos<ProductoBase[]>(miTienda.ListaDeProductos));
@@ -31,6 +31,7 @@ namespace DemoStore
                     Console.WriteLine("Su compra ha sido exitosa");
                     Console.WriteLine(MiCarrito.ProcesarCompra());
                     MiCarrito.ListaDeProductosSeleccionados.Clear();
+                    TiendaLog.GuardarEnLog("Compra exitosa, carrito reiniciado");
                 }
                 else
                 {
@@ -41,7 +42,10 @@ namespace DemoStore
                     articulo.Cantidad = int.Parse(cantidadEscogida.ToString());
                     articulo.ProductoSeleccionado = ProcesadorProductos.ObtenerProducto(productoEscogido.ToString(), miTienda.ListaDeProductos, miTienda.ListaDeProductosImportados);
 
+
                     MiCarrito.AgregarCarritoComprasArticulo(articulo);
+
+                    TiendaLog.GuardarEnLog($"Se agrega producto al carrito: {articulo.ProductoSeleccionado.Codigo}");
                 }
 
             }
