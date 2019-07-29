@@ -22,6 +22,7 @@ namespace DemoStore.Clases
             List<Producto> ListaProducto = new List<Producto>();
 
             Producto objetoProducto = new Producto();
+            objetoProducto.Codigo = "P01";
             objetoProducto.Nombre = "Arroz";
             objetoProducto.Descripcion = "Arroz";
             objetoProducto.UnidadMedicion = Medida.Kilo;
@@ -30,6 +31,7 @@ namespace DemoStore.Clases
             ListaProducto.Add(objetoProducto);
 
             var objetoProducto2 = new Producto();
+            objetoProducto2.Codigo = "P02";
             objetoProducto2.Nombre = "Aceite";
             objetoProducto2.Descripcion = "Aceite de oliva";
             objetoProducto2.UnidadMedicion = Medida.Unidad;
@@ -45,6 +47,7 @@ namespace DemoStore.Clases
             List<ProductoImportado> listaImportados = new List<ProductoImportado>();
 
             ProductoImportado productoImportado = new ProductoImportado();
+            productoImportado.Codigo = "PI01";
             productoImportado.Nombre = "Uvas";
             productoImportado.UnidadMedicion = Medida.Kilo;
             productoImportado.AsignarPrecio(1500);
@@ -53,6 +56,7 @@ namespace DemoStore.Clases
             listaImportados.Add(productoImportado);
 
             ProductoImportado productoImportado2 = new ProductoImportado();
+            productoImportado2.Codigo = "PI02";
             productoImportado2.Nombre = "Manzana";
             productoImportado2.UnidadMedicion = Medida.Kilo;
             productoImportado2.AsignarPrecio(3250);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using DemoStore.Clases;
 
@@ -15,17 +16,34 @@ namespace DemoStore.Utilidades
             {
                 if(misProductos[i] is ProductoImportado)
                 {
-                    sb.AppendLine($"Producto:{misProductos[i].Nombre} - Precio {misProductos[i].VerPrecio()} - Pais de importación { ((ProductoImportado)misProductos[i]).PaisDeImportacion}");
+                    sb.AppendLine($"Código: {misProductos[i].Codigo} - Producto:{misProductos[i].Nombre} - Precio {misProductos[i].VerPrecio()} - Pais de importación { ((ProductoImportado)misProductos[i]).PaisDeImportacion}");
                 }
                 else
                 { 
-                    sb.AppendLine($"Producto:{misProductos[i].Nombre} - Precio {misProductos[i].VerPrecio()}");
+                    sb.AppendLine($"Código: {misProductos[i].Codigo} - Producto:{misProductos[i].Nombre} - Precio {misProductos[i].VerPrecio()}");
 
                 }
                
             }
 
             return sb.ToString();
+        }
+
+        public static ProductoBase ObtenerProducto(string codigoProducto, Producto[] productos, ProductoImportado[] productoImportados)
+        {
+            List<ProductoBase> listaProducto = new List<ProductoBase>();
+            listaProducto.AddRange(productos);
+            listaProducto.AddRange(productoImportados);
+
+            foreach(var item in listaProducto)
+            {
+                if(item.Codigo == codigoProducto)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
 
     }

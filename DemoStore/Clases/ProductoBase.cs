@@ -4,6 +4,7 @@ namespace DemoStore.Clases
 {
     public abstract class ProductoBase
     {
+        public string Codigo {get;set;}
         public string Nombre {get; set;}
 
         private string _Descripcion;
